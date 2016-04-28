@@ -5,6 +5,13 @@ $(document).on('ready', function() {
   // attachTDhandler();
   var player;
 
+
+  if (player === undefined){
+    $('td').on('click', function(){
+      alert('Please Pick Game Mode!')
+    })
+  };
+
   function checkWinner(){
     for(var prop in winningCombos){
         if($('.x').hasClass(winningCombos[prop][0]) && $('.x').hasClass(winningCombos[prop][1]) && $('.x').hasClass(winningCombos[prop][2]) ){
@@ -32,10 +39,10 @@ $(document).on('ready', function() {
     $('td').off('click');
     $('td').on('click', function(){
       if (turn % 2 === 0){
-        $(this).html('X').addClass('x');
+        $(this).html('X').addClass('x').css('border-color', '#97eef0');
       }
       else{
-        $(this).html('O').addClass('o');
+        $(this).html('O').addClass('o').css('border-color', '#e25471');
       }
 
       turn++;
@@ -49,7 +56,7 @@ $(document).on('ready', function() {
   };
 
   function clearBoard(){
-    $('td').html('').removeClass('o').removeClass('x');
+    $('td').html('').removeClass('o').removeClass('x').css('border-color', '#e8e8e8');
     turn = 0;
     board = [1,2,3,4,5,6,7,8,9];
     if(player === 0){
@@ -80,8 +87,8 @@ function singleTDhandler(){
   $('td').off('click');
   $('td').on('click', function() {
 
-    $(this).html('X').addClass('x');
-    $(compMove()).html('O').addClass('o').off('click');
+    $(this).html('X').addClass('x').css('border-color', '#97eef0');
+    $(compMove()).html('O').addClass('o').off('click').css('border-color', '#e25471');
 
 
     $(this).off('click');
